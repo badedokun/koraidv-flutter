@@ -44,11 +44,11 @@ android {
 repositories {
     google()
     mavenCentral()
-    maven { url 'https://jitpack.io' }
+    flatDir { dirs 'libs' }
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compileOnly 'io.flutter:flutter_embedding_debug:1.0.0-0'
-    implementation 'com.github.badedokun:koraidv-koraidv-android:v1.0.3'
+    compileOnly files('libs/koraidv-v1.0.4.aar')
 }

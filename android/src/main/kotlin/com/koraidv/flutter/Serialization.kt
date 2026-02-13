@@ -62,17 +62,21 @@ object Serialization {
             "riskScore" to v.riskScore,
         )
 
-        if (v.documentVerification != null) {
-            map["documentVerification"] = serializeDocumentVerification(v.documentVerification)
+        val docVerification = v.documentVerification
+        if (docVerification != null) {
+            map["documentVerification"] = serializeDocumentVerification(docVerification)
         }
-        if (v.faceVerification != null) {
-            map["faceVerification"] = serializeFaceVerification(v.faceVerification)
+        val faceVerification = v.faceVerification
+        if (faceVerification != null) {
+            map["faceVerification"] = serializeFaceVerification(faceVerification)
         }
-        if (v.livenessVerification != null) {
-            map["livenessVerification"] = serializeLivenessVerification(v.livenessVerification)
+        val livenessVerification = v.livenessVerification
+        if (livenessVerification != null) {
+            map["livenessVerification"] = serializeLivenessVerification(livenessVerification)
         }
-        if (v.riskSignals != null) {
-            map["riskSignals"] = v.riskSignals.map { serializeRiskSignal(it) }
+        val riskSignals = v.riskSignals
+        if (riskSignals != null) {
+            map["riskSignals"] = riskSignals.map { serializeRiskSignal(it) }
         }
 
         return map
@@ -106,8 +110,9 @@ object Serialization {
             "livenessScore" to lv.livenessScore,
             "isLive" to lv.isLive,
         )
-        if (lv.challengeResults != null) {
-            map["challengeResults"] = lv.challengeResults.map { serializeChallengeResult(it) }
+        val challengeResults = lv.challengeResults
+        if (challengeResults != null) {
+            map["challengeResults"] = challengeResults.map { serializeChallengeResult(it) }
         }
         return map
     }
