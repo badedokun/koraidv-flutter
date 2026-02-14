@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import SwiftUI
 import KoraIDV
 
 /// Flutter plugin for KoraIDV iOS SDK.
@@ -73,22 +74,22 @@ public class KoraIDVFlutterPlugin: NSObject, FlutterPlugin {
         if let themeMap = args["theme"] as? [String: Any] {
             var theme = KoraTheme()
             if let primary = themeMap["primaryColor"] as? String {
-                theme.primaryColor = UIColor(hexString: primary)
+                theme.primaryColor = Color(hex: primary)
             }
             if let bg = themeMap["backgroundColor"] as? String {
-                theme.backgroundColor = UIColor(hexString: bg)
+                theme.backgroundColor = Color(hex: bg)
             }
             if let surface = themeMap["surfaceColor"] as? String {
-                theme.surfaceColor = UIColor(hexString: surface)
+                theme.surfaceColor = Color(hex: surface)
             }
             if let text = themeMap["textColor"] as? String {
-                theme.textColor = UIColor(hexString: text)
+                theme.textColor = Color(hex: text)
             }
             if let error = themeMap["errorColor"] as? String {
-                theme.errorColor = UIColor(hexString: error)
+                theme.errorColor = Color(hex: error)
             }
             if let success = themeMap["successColor"] as? String {
-                theme.successColor = UIColor(hexString: success)
+                theme.successColor = Color(hex: success)
             }
             if let radius = themeMap["cornerRadius"] as? CGFloat {
                 theme.cornerRadius = radius
@@ -200,22 +201,3 @@ public class KoraIDVFlutterPlugin: NSObject, FlutterPlugin {
     }
 }
 
-// MARK: - UIColor hex helper
-
-private extension UIColor {
-    convenience init(hexString: String) {
-        var hex = hexString.trimmingCharacters(in: .whitespacesAndNewlines)
-        if hex.hasPrefix("#") {
-            hex.removeFirst()
-        }
-
-        var rgbValue: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&rgbValue)
-
-        let r = CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0
-        let g = CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0
-        let b = CGFloat(rgbValue & 0x0000FF) / 255.0
-
-        self.init(red: r, green: g, blue: b, alpha: 1.0)
-    }
-}

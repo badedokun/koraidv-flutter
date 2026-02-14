@@ -50,5 +50,5 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compileOnly 'io.flutter:flutter_embedding_debug:1.0.0-0'
-    compileOnly files('libs/koraidv-v1.0.4.aar')
+    compileOnly files('libs/koraidv-release.aar')
 }
