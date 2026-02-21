@@ -193,9 +193,14 @@ class KoraIDVFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
             else -> VerificationTier.STANDARD
         }
 
+        val expectedFirstName = args?.get("expectedFirstName") as? String
+        val expectedLastName = args?.get("expectedLastName") as? String
+
         val request = VerificationRequest(
             externalId = externalId,
-            tier = tier
+            tier = tier,
+            expectedFirstName = expectedFirstName,
+            expectedLastName = expectedLastName
         )
 
         pendingResult = result

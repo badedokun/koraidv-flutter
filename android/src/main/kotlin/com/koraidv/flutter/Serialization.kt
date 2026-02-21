@@ -6,6 +6,7 @@ import com.koraidv.sdk.FaceVerification
 import com.koraidv.sdk.LivenessVerification
 import com.koraidv.sdk.RiskSignal
 import com.koraidv.sdk.Verification
+import com.koraidv.sdk.VerificationScores
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -74,6 +75,10 @@ object Serialization {
         if (livenessVerification != null) {
             map["livenessVerification"] = serializeLivenessVerification(livenessVerification)
         }
+        val scores = v.scores
+        if (scores != null) {
+            map["scores"] = serializeScores(scores)
+        }
         val riskSignals = v.riskSignals
         if (riskSignals != null) {
             map["riskSignals"] = riskSignals.map { serializeRiskSignal(it) }
@@ -122,6 +127,19 @@ object Serialization {
             "type" to cr.type,
             "passed" to cr.passed,
             "confidence" to cr.confidence,
+        )
+    }
+
+    private fun serializeScores(s: VerificationScores): HashMap<String, Any?> {
+        return hashMapOf(
+            "documentQuality" to s.documentQuality,
+            "documentAuth" to s.documentAuth,
+            "faceMatch" to s.faceMatch,
+            "liveness" to s.liveness,
+            "nameMatch" to s.nameMatch,
+            "dataConsistency" to s.dataConsistency,
+            "screening" to s.screening,
+            "overall" to s.overall,
         )
     }
 

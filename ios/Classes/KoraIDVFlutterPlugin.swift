@@ -127,6 +127,9 @@ public class KoraIDVFlutterPlugin: NSObject, FlutterPlugin {
         default: tier = .standard
         }
 
+        let expectedFirstName = args["expectedFirstName"] as? String
+        let expectedLastName = args["expectedLastName"] as? String
+
         DispatchQueue.main.async {
             guard let presenter = Self.topViewController() else {
                 result(FlutterError(code: "NOT_CONFIGURED", message: "No presenting view controller found.", details: nil))
@@ -136,6 +139,8 @@ public class KoraIDVFlutterPlugin: NSObject, FlutterPlugin {
             KoraIDV.startVerification(
                 externalId: externalId,
                 tier: tier,
+                expectedFirstName: expectedFirstName,
+                expectedLastName: expectedLastName,
                 from: presenter
             ) { verificationResult in
                 Self.handleVerificationResult(verificationResult, result: result)

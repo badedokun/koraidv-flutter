@@ -48,12 +48,21 @@ class KoraIDV {
     }
 
     try {
+      final optionsMap = <String, dynamic>{};
+      if (options?.documentTypes != null) {
+        optionsMap['documentTypes'] = options!.documentTypes!.map((d) => d.code).toList();
+      }
+      if (options?.expectedFirstName != null) {
+        optionsMap['expectedFirstName'] = options!.expectedFirstName;
+      }
+      if (options?.expectedLastName != null) {
+        optionsMap['expectedLastName'] = options!.expectedLastName;
+      }
+
       final resultMap = await KoraIDVPlatform.instance.startVerification(
         externalId: externalId,
         tier: tier.value,
-        options: options?.documentTypes != null
-            ? {'documentTypes': options!.documentTypes!.map((d) => d.code).toList()}
-            : null,
+        options: optionsMap.isNotEmpty ? optionsMap : null,
       );
       return deserializeResult(resultMap);
     } on PlatformException catch (e) {

@@ -208,6 +208,7 @@ class Verification {
   final DocumentVerification? documentVerification;
   final FaceVerification? faceVerification;
   final LivenessVerification? livenessVerification;
+  final VerificationScores? scores;
   final List<RiskSignal>? riskSignals;
   final double? riskScore;
   final String createdAt;
@@ -223,11 +224,39 @@ class Verification {
     this.documentVerification,
     this.faceVerification,
     this.livenessVerification,
+    this.scores,
     this.riskSignals,
     this.riskScore,
     required this.createdAt,
     required this.updatedAt,
     this.completedAt,
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Verification Scores
+// ---------------------------------------------------------------------------
+
+/// Backend verification scores (0-100 scale).
+class VerificationScores {
+  final double documentQuality;
+  final double documentAuth;
+  final double faceMatch;
+  final double liveness;
+  final double nameMatch;
+  final double dataConsistency;
+  final double screening;
+  final double overall;
+
+  const VerificationScores({
+    required this.documentQuality,
+    required this.documentAuth,
+    required this.faceMatch,
+    required this.liveness,
+    required this.nameMatch,
+    required this.dataConsistency,
+    required this.screening,
+    required this.overall,
   });
 }
 
@@ -350,5 +379,15 @@ class StartVerificationOptions {
   /// Override document types for this verification.
   final List<DocumentType>? documentTypes;
 
-  const StartVerificationOptions({this.documentTypes});
+  /// Expected first name from registration (for name matching).
+  final String? expectedFirstName;
+
+  /// Expected last name from registration (for name matching).
+  final String? expectedLastName;
+
+  const StartVerificationOptions({
+    this.documentTypes,
+    this.expectedFirstName,
+    this.expectedLastName,
+  });
 }

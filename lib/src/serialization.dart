@@ -68,7 +68,10 @@ VerificationFlowResult deserializeResult(Map<String, dynamic> map) {
   }
 
   if (type == 'success') {
-    final verificationMap = map['verification'] as Map<String, dynamic>?;
+    final rawVerification = map['verification'];
+    final verificationMap = rawVerification != null
+        ? Map<String, dynamic>.from(rawVerification as Map)
+        : null;
     if (verificationMap == null) {
       throw KoraException(
         KoraErrorCode.invalidResponse,
@@ -117,6 +120,10 @@ Verification deserializeVerification(Map<String, dynamic> map) {
         ? deserializeLivenessVerification(
             Map<String, dynamic>.from(map['livenessVerification'] as Map))
         : null,
+    scores: map['scores'] != null
+        ? deserializeVerificationScores(
+            Map<String, dynamic>.from(map['scores'] as Map))
+        : null,
     riskSignals: map['riskSignals'] != null
         ? (map['riskSignals'] as List)
             .map((e) => deserializeRiskSignal(Map<String, dynamic>.from(e as Map)))
@@ -126,6 +133,19 @@ Verification deserializeVerification(Map<String, dynamic> map) {
     createdAt: map['createdAt'] as String,
     updatedAt: map['updatedAt'] as String,
     completedAt: map['completedAt'] as String?,
+  );
+}
+
+VerificationScores deserializeVerificationScores(Map<String, dynamic> map) {
+  return VerificationScores(
+    documentQuality: (map['documentQuality'] as num).toDouble(),
+    documentAuth: (map['documentAuth'] as num).toDouble(),
+    faceMatch: (map['faceMatch'] as num).toDouble(),
+    liveness: (map['liveness'] as num).toDouble(),
+    nameMatch: (map['nameMatch'] as num).toDouble(),
+    dataConsistency: (map['dataConsistency'] as num).toDouble(),
+    screening: (map['screening'] as num).toDouble(),
+    overall: (map['overall'] as num).toDouble(),
   );
 }
 

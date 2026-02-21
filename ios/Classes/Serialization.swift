@@ -54,6 +54,9 @@ enum FlutterSerialization {
         if let lv = v.livenessVerification {
             map["livenessVerification"] = serializeLivenessVerification(lv)
         }
+        if let scores = v.scores {
+            map["scores"] = serializeScores(scores)
+        }
         if let rs = v.riskSignals {
             map["riskSignals"] = rs.map { serializeRiskSignal($0) }
         }
@@ -115,6 +118,21 @@ enum FlutterSerialization {
             "type": cr.type,
             "passed": cr.passed,
             "confidence": cr.confidence,
+        ]
+    }
+
+    // MARK: - Scores
+
+    private static func serializeScores(_ s: VerificationScores) -> [String: Any] {
+        return [
+            "documentQuality": s.documentQuality,
+            "documentAuth": s.documentAuth,
+            "faceMatch": s.faceMatch,
+            "liveness": s.liveness,
+            "nameMatch": s.nameMatch,
+            "dataConsistency": s.dataConsistency,
+            "screening": s.screening,
+            "overall": s.overall,
         ]
     }
 
