@@ -90,8 +90,21 @@ enum DocumentType {
   // Africa
   ghanaCard('ghana_card'),
   nigeriaNin('ng_nin'),
+  nigeriaDriversLicense('ng_drivers_license'),
+  ghanaDriversLicense('gh_drivers_license'),
   kenyaId('ke_id'),
-  southAfricaId('za_id');
+  kenyaDriversLicense('ke_drivers_license'),
+  southAfricaId('za_id'),
+  southAfricaDriversLicense('za_drivers_license'),
+
+  // UK
+  ukDriversLicense('uk_drivers_license'),
+
+  // Canada
+  canadaDriversLicense('ca_drivers_license'),
+
+  // India
+  indiaDriversLicense('in_drivers_license');
 
   final String code;
   const DocumentType(this.code);
