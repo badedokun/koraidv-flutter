@@ -72,6 +72,11 @@ enum KoraEnvironment {
 // Document Types
 // ---------------------------------------------------------------------------
 
+/// Supported document types.
+///
+/// Note: This is a convenience subset. The full list of supported document types
+/// (270+) is available via the API. The Flutter SDK delegates to the native
+/// iOS/Android SDKs which fetch types dynamically.
 enum DocumentType {
   // US Documents
   usDriversLicense('us_drivers_license'),
@@ -221,6 +226,7 @@ class Verification {
   final DocumentVerification? documentVerification;
   final FaceVerification? faceVerification;
   final LivenessVerification? livenessVerification;
+  final NfcVerification? nfcVerification;
   final VerificationScores? scores;
   final List<RiskSignal>? riskSignals;
   final double? riskScore;
@@ -237,6 +243,7 @@ class Verification {
     this.documentVerification,
     this.faceVerification,
     this.livenessVerification,
+    this.nfcVerification,
     this.scores,
     this.riskSignals,
     this.riskScore,
@@ -348,6 +355,38 @@ class ChallengeResult {
     required this.type,
     required this.passed,
     required this.confidence,
+  });
+}
+
+// ---------------------------------------------------------------------------
+// NFC Verification
+// ---------------------------------------------------------------------------
+
+class NfcVerification {
+  final bool chipAuthentic;
+  final bool passiveAuthPassed;
+  final bool? activeAuthPassed;
+  final double dataIntegrityScore;
+  final bool faceImageExtracted;
+  final String? documentNumber;
+  final String? firstName;
+  final String? lastName;
+  final String? dateOfBirth;
+  final String? expirationDate;
+  final String? nationality;
+
+  const NfcVerification({
+    required this.chipAuthentic,
+    required this.passiveAuthPassed,
+    this.activeAuthPassed,
+    required this.dataIntegrityScore,
+    required this.faceImageExtracted,
+    this.documentNumber,
+    this.firstName,
+    this.lastName,
+    this.dateOfBirth,
+    this.expirationDate,
+    this.nationality,
   });
 }
 
