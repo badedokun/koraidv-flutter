@@ -120,6 +120,10 @@ Verification deserializeVerification(Map<String, dynamic> map) {
         ? deserializeLivenessVerification(
             Map<String, dynamic>.from(map['livenessVerification'] as Map))
         : null,
+    nfcVerification: map['nfcVerification'] != null
+        ? deserializeNfcVerification(
+            Map<String, dynamic>.from(map['nfcVerification'] as Map))
+        : null,
     scores: map['scores'] != null
         ? deserializeVerificationScores(
             Map<String, dynamic>.from(map['scores'] as Map))
@@ -191,6 +195,22 @@ ChallengeResult deserializeChallengeResult(Map<String, dynamic> map) {
     type: map['type'] as String,
     passed: map['passed'] as bool,
     confidence: (map['confidence'] as num).toDouble(),
+  );
+}
+
+NfcVerification deserializeNfcVerification(Map<String, dynamic> map) {
+  return NfcVerification(
+    chipAuthentic: map['chipAuthentic'] as bool,
+    passiveAuthPassed: map['passiveAuthPassed'] as bool,
+    activeAuthPassed: map['activeAuthPassed'] as bool?,
+    dataIntegrityScore: (map['dataIntegrityScore'] as num).toDouble(),
+    faceImageExtracted: map['faceImageExtracted'] as bool,
+    documentNumber: map['documentNumber'] as String?,
+    firstName: map['firstName'] as String?,
+    lastName: map['lastName'] as String?,
+    dateOfBirth: map['dateOfBirth'] as String?,
+    expirationDate: map['expirationDate'] as String?,
+    nationality: map['nationality'] as String?,
   );
 }
 

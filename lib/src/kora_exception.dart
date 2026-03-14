@@ -59,6 +59,10 @@ enum KoraErrorCode {
   verificationAlreadyCompleted('VERIFICATION_ALREADY_COMPLETED'),
   invalidVerificationState('INVALID_VERIFICATION_STATE'),
 
+  // NFC errors
+  nfcNotAvailable('NFC_NOT_AVAILABLE'),
+  nfcReadFailed('NFC_READ_FAILED'),
+
   // Generic errors
   unknown('UNKNOWN'),
   userCancelled('USER_CANCELLED'),
@@ -117,6 +121,8 @@ const Map<KoraErrorCode, String> _errorMessages = {
   KoraErrorCode.invalidVerificationState: 'Invalid verification state.',
   KoraErrorCode.unknown: 'An unknown error occurred.',
   KoraErrorCode.userCancelled: 'Verification cancelled.',
+  KoraErrorCode.nfcNotAvailable: 'NFC is not available on this device.',
+  KoraErrorCode.nfcReadFailed: 'Failed to read NFC chip from document.',
   KoraErrorCode.notImplemented: 'This feature is not yet implemented on this platform.',
 };
 
@@ -133,6 +139,8 @@ const Map<KoraErrorCode, String> _recoverySuggestions = {
   KoraErrorCode.documentNotDetected: 'Place document on flat surface with good lighting.',
   KoraErrorCode.faceNotDetected: 'Ensure good lighting and center your face.',
   KoraErrorCode.qualityValidationFailed: 'Hold device steady and ensure good lighting.',
+  KoraErrorCode.nfcNotAvailable: 'This device does not support NFC.',
+  KoraErrorCode.nfcReadFailed: 'Hold the document flat against the back of your device and keep it still.',
 };
 
 // ---------------------------------------------------------------------------

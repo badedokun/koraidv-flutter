@@ -83,7 +83,6 @@ object Serialization {
         if (riskSignals != null) {
             map["riskSignals"] = riskSignals.map { serializeRiskSignal(it) }
         }
-
         return map
     }
 

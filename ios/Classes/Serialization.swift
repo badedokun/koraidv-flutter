@@ -66,7 +66,6 @@ enum FlutterSerialization {
         if let completed = v.completedAt {
             map["completedAt"] = iso8601.string(from: completed)
         }
-
         return map
     }
 
