@@ -102,13 +102,44 @@ enum DocumentType {
   southAfricaId('za_id'),
   southAfricaDriversLicense('za_drivers_license'),
 
+  // Liberia
+  liberiaId('lr_id'),
+  liberiaDriversLicense('lr_drivers_license'),
+  liberiaVotersCard('lr_voters_card'),
+
+  // Sierra Leone
+  sierraLeoneId('sl_id'),
+  sierraLeoneDriversLicense('sl_drivers_license'),
+  sierraLeoneVotersCard('sl_voters_card'),
+
+  // Gambia
+  gambiaId('gm_id'),
+  gambiaDriversLicense('gm_drivers_license'),
+
+  // Nigeria (additional)
+  nigeriaVotersCard('ng_voters_card'),
+
   // UK
   ukDriversLicense('uk_drivers_license'),
+  ukBRP('uk_brp'),
 
   // Canada
   canadaDriversLicense('ca_drivers_license'),
   canadaPRCard('ca_pr_card'),
   canadaNationalID('ca_national_id'),
+
+  // EU Residence Permits
+  germanyResidencePermit('de_rp'),
+  franceResidencePermit('fr_rp'),
+  italyResidencePermit('it_rp'),
+  spainResidencePermit('es_rp'),
+  irelandResidencePermit('ie_rp'),
+  portugalResidencePermit('pt_rp'),
+  swedenResidencePermit('se_rp'),
+  denmarkResidencePermit('dk_rp'),
+  norwayResidencePermit('no_rp'),
+  finlandResidencePermit('fi_rp'),
+  polandResidencePermit('pl_rp'),
 
   // India
   indiaDriversLicense('in_drivers_license');
