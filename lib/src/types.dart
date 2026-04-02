@@ -107,6 +107,8 @@ enum DocumentType {
 
   // Canada
   canadaDriversLicense('ca_drivers_license'),
+  canadaPRCard('ca_pr_card'),
+  canadaNationalID('ca_national_id'),
 
   // India
   indiaDriversLicense('in_drivers_license');
