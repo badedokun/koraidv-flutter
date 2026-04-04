@@ -79,12 +79,14 @@ enum KoraEnvironment {
 /// iOS/Android SDKs which fetch types dynamically.
 enum DocumentType {
   // US Documents
+  usPassport('us_passport'),
   usDriversLicense('us_drivers_license'),
   usStateId('us_state_id'),
   usGreenCard('us_green_card'),
 
   // Passport (all countries)
   internationalPassport('international_passport'),
+  ukPassport('uk_passport'),
 
   // EU ID Cards
   euIdGermany('eu_id_de'),
