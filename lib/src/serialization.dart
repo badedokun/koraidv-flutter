@@ -39,6 +39,12 @@ Map<String, dynamic> serializeConfiguration(KoraIDVConfiguration config) {
   if (config.debugLogging != null) {
     map['debugLogging'] = config.debugLogging;
   }
+  if (config.resultPageMode != null) {
+    map['resultPageMode'] = config.resultPageMode!.value;
+  }
+  if (config.customMessages != null) {
+    map['customMessages'] = config.customMessages!.toMap();
+  }
 
   return map;
 }

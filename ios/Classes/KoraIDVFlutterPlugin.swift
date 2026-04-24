@@ -105,6 +105,24 @@ public class KoraIDVFlutterPlugin: NSObject, FlutterPlugin {
             config.debugLogging = debug
         }
 
+        // REQ-005 · resultPageMode + customMessages cross the Flutter
+        // MethodChannel as a String + nested dictionary. Unknown values
+        // fall back to the SDK default (.detailed).
+        if let mode = args["resultPageMode"] as? String,
+           let parsed = ResultPageMode(rawValue: mode) {
+            config.resultPageMode = parsed
+        }
+        if let messagesMap = args["customMessages"] as? [String: Any] {
+            config.customMessages = ResultPageMessages(
+                successTitle: messagesMap["successTitle"] as? String,
+                successMessage: messagesMap["successMessage"] as? String,
+                failedTitle: messagesMap["failedTitle"] as? String,
+                failedMessage: messagesMap["failedMessage"] as? String,
+                reviewTitle: messagesMap["reviewTitle"] as? String,
+                reviewMessage: messagesMap["reviewMessage"] as? String
+            )
+        }
+
         KoraIDV.configure(with: config)
         result(nil)
     }
