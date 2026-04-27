@@ -15,6 +15,8 @@ import com.koraidv.sdk.KoraException
 import com.koraidv.sdk.KoraIDV
 import com.koraidv.sdk.KoraTheme
 import com.koraidv.sdk.LivenessMode
+import com.koraidv.sdk.ResultPageMessages
+import com.koraidv.sdk.ResultPageMode
 import com.koraidv.sdk.Verification
 import com.koraidv.sdk.VerificationRequest
 import com.koraidv.sdk.VerificationTier
@@ -147,6 +149,24 @@ class KoraIDVFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
             )
         } ?: KoraTheme()
 
+        // REQ-005 · resultPageMode + customMessages cross the Flutter
+        // MethodChannel as a String + nested Map. Unknown values fall back
+        // to SDK default (DETAILED).
+        val resultPageMode = when (args["resultPageMode"] as? String) {
+            "simplified" -> ResultPageMode.SIMPLIFIED
+            else -> ResultPageMode.DETAILED
+        }
+        val customMessages = (args["customMessages"] as? Map<*, *>)?.let { cm ->
+            ResultPageMessages(
+                successTitle = cm["successTitle"] as? String,
+                successMessage = cm["successMessage"] as? String,
+                failedTitle = cm["failedTitle"] as? String,
+                failedMessage = cm["failedMessage"] as? String,
+                reviewTitle = cm["reviewTitle"] as? String,
+                reviewMessage = cm["reviewMessage"] as? String
+            )
+        }
+
         val config = Configuration(
             apiKey = apiKey,
             tenantId = tenantId,
@@ -155,7 +175,9 @@ class KoraIDVFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
             livenessMode = livenessMode,
             theme = theme,
             timeout = (args["timeout"] as? Number)?.toLong() ?: 600L,
-            debugLogging = (args["debugLogging"] as? Boolean) ?: false
+            debugLogging = (args["debugLogging"] as? Boolean) ?: false,
+            resultPageMode = resultPageMode,
+            customMessages = customMessages
         )
 
         KoraIDV.configure(config)

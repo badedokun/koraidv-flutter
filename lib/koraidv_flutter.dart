@@ -11,3 +11,8 @@ export 'src/koraidv_platform_interface.dart';
 export 'src/widgets/koraidv_provider.dart';
 export 'src/widgets/koraidv_controller.dart';
 export 'src/widgets/verification_flow.dart';
+
+// Wallet — W3C Verifiable Credentials
+export 'src/wallet/kora_wallet.dart';
+export 'src/wallet/wallet_models.dart';
+export 'src/wallet/selective_disclosure.dart';

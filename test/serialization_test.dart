@@ -49,6 +49,39 @@ void main() {
       expect(map['timeout'], 300);
       expect(map['debugLogging'], true);
     });
+
+    // REQ-005 · Native plugin bridges read these two keys. The test locks
+    // the wire format so the Kotlin/Swift side in koraidv-flutter/android
+    // + ios doesn't silently diverge.
+    test('serializes resultPageMode as lowercase string', () {
+      const config = KoraIDVConfiguration(
+        apiKey: 'ck_live_test',
+        tenantId: 'tenant-123',
+        resultPageMode: ResultPageMode.simplified,
+      );
+
+      final map = serializeConfiguration(config);
+      expect(map['resultPageMode'], 'simplified');
+    });
+
+    test('serializes customMessages as a nested map', () {
+      const config = KoraIDVConfiguration(
+        apiKey: 'ck_live_test',
+        tenantId: 'tenant-123',
+        customMessages: ResultPageMessages(
+          successTitle: 'All set!',
+          failedMessage: 'Try again.',
+        ),
+      );
+
+      final map = serializeConfiguration(config);
+      final messages = map['customMessages'] as Map<String, dynamic>;
+      expect(messages['successTitle'], 'All set!');
+      expect(messages['failedMessage'], 'Try again.');
+      // Unset fields stay absent rather than serialising as null — keeps
+      // the native bridge's `?.let` / `if let` branches tidy.
+      expect(messages.containsKey('successMessage'), isFalse);
+    });
   });
 
   group('deserializeResult', () {

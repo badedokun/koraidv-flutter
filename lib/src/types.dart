@@ -36,6 +36,13 @@ class KoraIDVConfiguration {
   /// Enable debug logging (default: false).
   final bool? debugLogging;
 
+  /// Result page mode (REQ-005). `simplified` shows only Success/Failed/Review
+  /// with no scores. Overrides the tenant-level `result_page_mode` setting.
+  final ResultPageMode? resultPageMode;
+
+  /// Optional per-outcome copy overrides for the simplified result page.
+  final ResultPageMessages? customMessages;
+
   const KoraIDVConfiguration({
     required this.apiKey,
     required this.tenantId,
@@ -46,7 +53,48 @@ class KoraIDVConfiguration {
     this.theme,
     this.timeout,
     this.debugLogging,
+    this.resultPageMode,
+    this.customMessages,
   });
+}
+
+// ---------------------------------------------------------------------------
+// Result Page Mode (REQ-005)
+// ---------------------------------------------------------------------------
+
+enum ResultPageMode {
+  detailed('detailed'),
+  simplified('simplified');
+
+  final String value;
+  const ResultPageMode(this.value);
+}
+
+class ResultPageMessages {
+  final String? successTitle;
+  final String? successMessage;
+  final String? failedTitle;
+  final String? failedMessage;
+  final String? reviewTitle;
+  final String? reviewMessage;
+
+  const ResultPageMessages({
+    this.successTitle,
+    this.successMessage,
+    this.failedTitle,
+    this.failedMessage,
+    this.reviewTitle,
+    this.reviewMessage,
+  });
+
+  Map<String, dynamic> toMap() => {
+        if (successTitle != null) 'successTitle': successTitle,
+        if (successMessage != null) 'successMessage': successMessage,
+        if (failedTitle != null) 'failedTitle': failedTitle,
+        if (failedMessage != null) 'failedMessage': failedMessage,
+        if (reviewTitle != null) 'reviewTitle': reviewTitle,
+        if (reviewMessage != null) 'reviewMessage': reviewMessage,
+      };
 }
 
 // ---------------------------------------------------------------------------
