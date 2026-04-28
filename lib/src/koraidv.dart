@@ -26,7 +26,7 @@ class KoraIDV {
   bool get isConfigured => _isConfigured;
 
   /// SDK version.
-  String get version => '1.2.0';
+  String get version => '1.4.1';
 
   /// Configure the SDK. Must be called before starting any verification.
   Future<void> configure(KoraIDVConfiguration config) async {
