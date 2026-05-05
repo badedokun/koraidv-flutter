@@ -64,6 +64,9 @@ class SelectiveDisclosureEngine {
     final Set<DisclosureClaim> claims;
     switch (profile.type) {
       case DisclosureProfileType.full:
+        // Dart has no spread on call args — Set.of takes the iterable
+        // directly. (An earlier `Set.of(...DisclosureClaim.values)` was a
+        // JS-style copy-paste that broke compilation; in-place fix on v1.5.0.)
         claims = Set.of(DisclosureClaim.values);
       case DisclosureProfileType.onboarding:
         claims = {
