@@ -17,8 +17,9 @@ void main() {
   });
 
   group('KoraIDV', () {
-    test('version returns 1.0.0', () {
-      expect(sut.version, '1.0.0');
+    test('version returns the published SDK version', () {
+      // Pin to current release. Bump in lockstep with pubspec.yaml + koraidv.dart.
+      expect(sut.version, '1.5.2');
     });
 
     test('isConfigured is false initially', () {
