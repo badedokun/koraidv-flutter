@@ -64,7 +64,7 @@ class SelectiveDisclosureEngine {
     final Set<DisclosureClaim> claims;
     switch (profile.type) {
       case DisclosureProfileType.full:
-        claims = Set.of(...DisclosureClaim.values);
+        claims = Set.of(DisclosureClaim.values);
       case DisclosureProfileType.onboarding:
         claims = {
           DisclosureClaim.fullName,
