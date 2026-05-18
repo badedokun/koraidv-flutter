@@ -53,7 +53,7 @@ import 'package:koraidv_flutter/koraidv_flutter.dart';
 void main() {
   runApp(
     KoraIDVProvider(
-      apiKey: 'ck_live_your_key',
+      apiKey: 'sk_live_your_key',
       tenantId: 'your-tenant-id',
       child: const MyApp(),
     ),
@@ -151,7 +151,7 @@ Headless widget that auto-starts verification on mount and fires callbacks.
 
 ```dart
 KoraIDVConfiguration(
-  apiKey: 'ck_live_...',         // Required
+  apiKey: 'sk_live_...',         // Required
   tenantId: 'uuid',              // Required
   environment: KoraEnvironment.production,
   baseUrl: 'https://...',        // Custom endpoint
