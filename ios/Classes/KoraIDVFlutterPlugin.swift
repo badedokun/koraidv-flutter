@@ -105,6 +105,15 @@ public class KoraIDVFlutterPlugin: NSObject, FlutterPlugin {
             config.debugLogging = debug
         }
 
+        // v1.8.5: forward showVisualGuides through the bridge so Flutter
+        // consumers can enable/disable the guided overlays the same way
+        // RN + Web consumers can. Native default is false; Flutter wrapper
+        // defaults true to match Web SDK behavior. Pre-v1.8.5 this flag
+        // was silently dropped at the bridge layer, so every Flutter
+        // consumer rendered without guides on iOS regardless of what
+        // they passed from Dart.
+        config.showVisualGuides = (args["showVisualGuides"] as? Bool) ?? true
+
         // REQ-005 · resultPageMode + customMessages cross the Flutter
         // MethodChannel as a String + nested dictionary. Unknown values
         // fall back to the SDK default (.detailed).

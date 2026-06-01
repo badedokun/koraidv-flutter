@@ -45,6 +45,9 @@ Map<String, dynamic> serializeConfiguration(KoraIDVConfiguration config) {
   if (config.customMessages != null) {
     map['customMessages'] = config.customMessages!.toMap();
   }
+  if (config.showVisualGuides != null) {
+    map['showVisualGuides'] = config.showVisualGuides;
+  }
 
   return map;
 }

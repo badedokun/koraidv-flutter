@@ -43,6 +43,18 @@ class KoraIDVConfiguration {
   /// Optional per-outcome copy overrides for the simplified result page.
   final ResultPageMessages? customMessages;
 
+  /// Render Visual Guide illustrations above the capture + liveness
+  /// viewfinders. Defaults to `true` here so Flutter consumers get the
+  /// same guided-UX behavior as Web SDK consumers (which also defaults
+  /// true). Pass `false` for a plain text-only flow.
+  ///
+  /// Mirrors `Configuration.showVisualGuides` on the native Android SDK
+  /// (since v1.3.0) and iOS SDK (since v1.7.0 SwiftUI Canvas port).
+  /// Native default is `false`; the Flutter wrapper opts integrators into
+  /// the guides by default because Flutter UX-consumers expect the
+  /// fuller flow out of the box (same rationale as the Web SDK default).
+  final bool? showVisualGuides;
+
   const KoraIDVConfiguration({
     required this.apiKey,
     required this.tenantId,
@@ -55,6 +67,7 @@ class KoraIDVConfiguration {
     this.debugLogging,
     this.resultPageMode,
     this.customMessages,
+    this.showVisualGuides,
   });
 }
 

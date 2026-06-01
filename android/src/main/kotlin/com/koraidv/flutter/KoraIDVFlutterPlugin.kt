@@ -177,7 +177,15 @@ class KoraIDVFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
             timeout = (args["timeout"] as? Number)?.toLong() ?: 600L,
             debugLogging = (args["debugLogging"] as? Boolean) ?: false,
             resultPageMode = resultPageMode,
-            customMessages = customMessages
+            customMessages = customMessages,
+            // v1.8.5: forward showVisualGuides through the bridge so Flutter
+            // consumers can enable/disable the guided overlays the same way
+            // RN + Web consumers can. Native default is false; Flutter wrapper
+            // defaults true to match Web SDK behavior. Pre-v1.8.5 this flag
+            // was silently dropped at the bridge layer, so every Flutter
+            // consumer rendered without guides on Android regardless of
+            // what they passed from Dart.
+            showVisualGuides = (args["showVisualGuides"] as? Boolean) ?: true
         )
 
         KoraIDV.configure(config)
