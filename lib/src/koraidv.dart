@@ -25,8 +25,11 @@ class KoraIDV {
   /// Whether the SDK has been configured.
   bool get isConfigured => _isConfigured;
 
-  /// SDK version.
-  String get version => '1.5.5';
+  /// SDK version reported by the native side (e.g. "1.9.1-rc2"). Async
+  /// because it crosses the MethodChannel. Always returns whatever the
+  /// underlying native AAR/framework reports, so this is the canonical
+  /// "what RC is actually running on device" check.
+  Future<String> get version => KoraIDVPlatform.instance.getVersion();
 
   /// Configure the SDK. Must be called before starting any verification.
   Future<void> configure(KoraIDVConfiguration config) async {

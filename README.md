@@ -17,7 +17,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  koraidv_flutter: ^1.5.5
+  koraidv_flutter: ^1.8.5
 ```
 
 ### iOS

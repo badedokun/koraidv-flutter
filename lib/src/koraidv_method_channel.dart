@@ -17,6 +17,12 @@ class MethodChannelKoraIDV extends KoraIDVPlatform {
   }
 
   @override
+  Future<String> getVersion() async {
+    final v = await _channel.invokeMethod<String>('getVersion');
+    return v ?? '';
+  }
+
+  @override
   Future<Map<String, dynamic>> startVerification({
     required String externalId,
     required String tier,

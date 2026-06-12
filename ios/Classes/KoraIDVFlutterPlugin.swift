@@ -37,6 +37,8 @@ public class KoraIDVFlutterPlugin: NSObject, FlutterPlugin {
             handleStartVerification(call, result: result)
         case "resumeVerification":
             handleResumeVerification(call, result: result)
+        case "getVersion":
+            result(KoraIDV.version)
         default:
             result(FlutterMethodNotImplemented)
         }

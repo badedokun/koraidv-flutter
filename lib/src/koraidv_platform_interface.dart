@@ -26,6 +26,11 @@ abstract class KoraIDVPlatform {
   /// Configure the native SDK.
   Future<void> configure(Map<String, dynamic> config);
 
+  /// Return the native SDK's reported version (e.g. "1.9.1-rc2"). Sourced
+  /// from the native VERSION constant rather than the Dart wrapper so we
+  /// always reflect what's actually running on device.
+  Future<String> getVersion();
+
   /// Start a new verification flow. Returns the result map from native.
   Future<Map<String, dynamic>> startVerification({
     required String externalId,

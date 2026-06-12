@@ -99,6 +99,7 @@ class KoraIDVFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
             "configure" -> handleConfigure(call, result)
             "startVerification" -> handleStartVerification(call, result)
             "resumeVerification" -> handleResumeVerification(call, result)
+            "getVersion" -> result.success(com.koraidv.sdk.KoraIDV.VERSION)
             else -> result.notImplemented()
         }
     }
