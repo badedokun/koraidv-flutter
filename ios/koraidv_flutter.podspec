@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'koraidv_flutter'
-  s.version          = '1.9.2'
+  s.version          = '1.9.3'
   s.summary          = 'Kora IDV Identity Verification SDK for Flutter (iOS)'
   s.description      = <<-DESC
 Flutter plugin wrapping the KoraIDV native iOS SDK via platform channels.
