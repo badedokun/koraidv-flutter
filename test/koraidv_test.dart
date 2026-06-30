@@ -17,9 +17,12 @@ void main() {
   });
 
   group('KoraIDV', () {
-    test('version returns the published SDK version', () {
-      // Pin to current release. Bump in lockstep with pubspec.yaml + koraidv.dart.
-      expect(sut.version, '1.5.2');
+    test('version returns the platform SDK version', () async {
+      // `version` is async now — it delegates to the native platform's
+      // getVersion() rather than a Dart-side constant. Verify the delegation.
+      mockPlatform.nextVersion = '1.9.7';
+      expect(await sut.version, '1.9.7');
+      expect(mockPlatform.getVersionCalls, 1);
     });
 
     test('isConfigured is false initially', () {

@@ -34,7 +34,7 @@ class WalletPresentationBuilder {
 
   /// Serialize a presentation to a JSON string.
   static String encode(WalletPresentation presentation) {
-    final encoder = const JsonEncoder.withIndent('  ');
+    const encoder = JsonEncoder.withIndent('  ');
     return encoder.convert(presentation.toJson());
   }
 

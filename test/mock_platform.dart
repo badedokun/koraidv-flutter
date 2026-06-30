@@ -15,6 +15,12 @@ class MockKoraIDVPlatform extends KoraIDVPlatform {
   /// Recorded resumeVerification calls.
   final List<String> resumeVerificationCalls = [];
 
+  /// Recorded getVersion call count.
+  int getVersionCalls = 0;
+
+  /// Value to return from getVersion.
+  String nextVersion = '0.0.0-test';
+
   /// Result to return from startVerification/resumeVerification.
   Map<String, dynamic>? nextResult;
 
@@ -50,10 +56,17 @@ class MockKoraIDVPlatform extends KoraIDVPlatform {
     return nextResult ?? {};
   }
 
+  @override
+  Future<String> getVersion() async {
+    getVersionCalls++;
+    return nextVersion;
+  }
+
   void reset() {
     configureCalls.clear();
     startVerificationCalls.clear();
     resumeVerificationCalls.clear();
+    getVersionCalls = 0;
     nextResult = null;
     nextError = null;
   }

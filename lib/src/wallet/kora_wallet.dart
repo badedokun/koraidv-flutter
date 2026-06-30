@@ -50,7 +50,7 @@ class KoraWallet {
   List<StoredWalletCredential> getCredentials() {
     final ids = _store.listIds();
     return ids
-        .map((id) => _store.load(id))
+        .map(_store.load)
         .where((c) => c != null)
         .cast<StoredWalletCredential>()
         .toList();
