@@ -20,8 +20,8 @@ void main() {
     test('version returns the platform SDK version', () async {
       // `version` is async now — it delegates to the native platform's
       // getVersion() rather than a Dart-side constant. Verify the delegation.
-      mockPlatform.nextVersion = '1.10.2';
-      expect(await sut.version, '1.10.2');
+      mockPlatform.nextVersion = '1.10.3';
+      expect(await sut.version, '1.10.3');
       expect(mockPlatform.getVersionCalls, 1);
     });
 

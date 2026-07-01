@@ -1,3 +1,13 @@
+## 1.10.3
+
+- Lockstep release. Durable server-side eyewear (sunglasses) enforcement:
+  the on-device eye-visibility heuristic no longer hard-blocks selfie
+  capture — a pretrained, face-independent sunglasses classifier in the
+  KoraIDV backend is now the authoritative gate (opaque sunglasses are
+  auto-rejected; ambiguous mirrored/tinted lenses route to manual review;
+  bare eyes are never false-rejected). No Dart API changes. Refreshes the
+  bundled Android AAR and the iOS pod to 1.10.3.
+
 ## 1.8.5
 
 - Plug `showVisualGuides` through the Flutter bridge (Dart → Kotlin and
