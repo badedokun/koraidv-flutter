@@ -317,10 +317,18 @@ class KoraIDVFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
 
     private fun String.hexToLong(): Long? {
         if (this.isEmpty()) return null
-        val hex = this.removePrefix("#")
-        if (hex.length != 6) return null
+        val hex = this.trim().removePrefix("#")
+        // Accept 3/6/8-digit hex, matching the iOS Color(hex:) parser so the same
+        // theme value works on both platforms (previously only 6-digit worked, so
+        // an integrator's 8-digit/shorthand color silently fell back to default).
+        val argb = when (hex.length) {
+            3 -> "FF${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}"
+            6 -> "FF$hex"
+            8 -> hex
+            else -> return null
+        }
         return try {
-            (0xFF000000 or hex.toLong(16))
+            argb.toLong(16)
         } catch (_: NumberFormatException) {
             null
         }
