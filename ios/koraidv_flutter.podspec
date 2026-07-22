@@ -17,7 +17,7 @@ All camera, ML, liveness, and API logic stays in the native layer.
   s.swift_version    = '5.7'
 
   s.dependency 'Flutter'
-  s.dependency 'KoraIDV', '~> 1.9'
+  s.dependency 'KoraIDV', '~> 1.10'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
