@@ -36,6 +36,9 @@ Map<String, dynamic> serializeConfiguration(KoraIDVConfiguration config) {
   if (config.timeout != null) {
     map['timeout'] = config.timeout;
   }
+  if (config.networkTimeoutSeconds != null) {
+    map['networkTimeoutSeconds'] = config.networkTimeoutSeconds;
+  }
   if (config.debugLogging != null) {
     map['debugLogging'] = config.debugLogging;
   }

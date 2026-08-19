@@ -33,6 +33,11 @@ class KoraIDVConfiguration {
   /// Session timeout in seconds (default: 600).
   final int? timeout;
 
+  /// Per-request network timeout in seconds. Passed through to the native SDK;
+  /// null uses the native env-aware default (60s sandbox / 30s production on
+  /// Android; 120s on iOS). Set to override.
+  final int? networkTimeoutSeconds;
+
   /// Enable debug logging (default: false).
   final bool? debugLogging;
 
@@ -64,6 +69,7 @@ class KoraIDVConfiguration {
     this.livenessMode,
     this.theme,
     this.timeout,
+    this.networkTimeoutSeconds,
     this.debugLogging,
     this.resultPageMode,
     this.customMessages,

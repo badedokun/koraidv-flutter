@@ -102,6 +102,9 @@ public class KoraIDVFlutterPlugin: NSObject, FlutterPlugin {
         if let timeout = args["timeout"] as? TimeInterval {
             config.timeout = timeout
         }
+        if let networkTimeoutSeconds = args["networkTimeoutSeconds"] as? TimeInterval {
+            config.networkTimeoutSeconds = networkTimeoutSeconds
+        }
 
         if let debug = args["debugLogging"] as? Bool {
             config.debugLogging = debug
